@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
 import Cell from './Cell.js';
+import CharacterPicker from './CharacterPicker.js';
 
 class Board extends Component {
+	constructor(props) {
+    super(props);
+    this.state = {
+      cells: Array(9).fill('X'),
+    };
+	}
+
+	renderCell(index) {
+		return <Cell index={index} value={this.state.cells[index]} />
+	}
+	
 	render() {
 		return (
 			<div>
+				<CharacterPicker />
 				<table>
 					<tbody>
 						<tr>
-							<Cell index={0} />
-							<Cell index={1} />
-							<Cell index={2} />
+							{this.renderCell(0)}
+							{this.renderCell(1)}
+							{this.renderCell(2)}
 						</tr>
 						<tr>
-							<Cell index={3} />
-							<Cell index={4} />
-							<Cell index={5} />
+							{this.renderCell(3)}
+							{this.renderCell(4)}
+							{this.renderCell(5)}
 						</tr>
 						<tr>
-							<Cell index={6} />
-							<Cell index={7} />
-							<Cell index={8} />
+							{this.renderCell(6)}
+							{this.renderCell(7)}
+							{this.renderCell(8)}
 						</tr>
 					</tbody>
 				</table>
