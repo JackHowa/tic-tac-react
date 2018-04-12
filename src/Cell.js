@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 
 class Cell extends Component {
-	render() {
-		return (
-			<th>
-				<p>{this.props.value}</p>
-			</th>
-		)
-	}
+  handleClick = () => {
+    this.props.onClickFunction(this.props.humanCharacter, this.props.index);
+  };
+
+  render() {
+    return (
+
+        <th>
+          <div className={'item'}>
+            <p onClick={this.handleClick}>{this.props.value}</p>
+          </div>
+        </th>
+
+    );
+  }
 }
 
 export default Cell;
