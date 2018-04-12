@@ -5,9 +5,9 @@ import Board from './Board.js';
 class App extends Component {
   render() {
     return (
-			<div>
-				<Board />
-      </div>
+        <div>
+          <Board/>
+        </div>
     );
   }
 }
