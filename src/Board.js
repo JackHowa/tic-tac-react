@@ -3,8 +3,22 @@ import Cell from './Cell.js';
 import CharacterPicker from './CharacterPicker.js';
 import './grid.css';
 
-class Board extends Component {
+// constants go outside of the class
+const WINNING_SOLUTIONS = [
+  // horizontal
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  // vertical
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  // diagonal
+  [0,4,8],
+  [2,4,8]
+];
 
+class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +26,20 @@ class Board extends Component {
       humanCharacter: '',
     };
   }
+
+  checkWinner = () => {
+    // findIndex returns the first time it matches
+    // isWinner checks for match
+    // might be implicit true
+    console.log(WINNING_SOLUTIONS.findIndex(solution => this.isWinner(solution, 'X')));
+  };
+
+  isWinner = (targetIndex, humanCharacter = 'X') => {
+    let targetValues = this.state.cells.filter((input, index) => targetIndex.includes(index)); // ["X","X","X"]
+
+    // will return true if all match
+    return targetValues.every(value => value === humanCharacter);
+  };
 
   pickCharacter = (character) => {
     this.setState({
@@ -29,6 +57,7 @@ class Board extends Component {
     this.setState({
       cells,
     });
+    this.checkWinner();
   };
 
   renderCell(index) {
